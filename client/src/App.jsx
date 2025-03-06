@@ -24,6 +24,7 @@ import { checkAuth } from './store/auth-slice';
 import { Skeleton } from './components/ui/skeleton';
 import PaypalReturnPage from "./pages/shopping-view/paypal-return";
 import PaymentSuccessPage from "./pages/shopping-view/payment-success";
+import AuctionComponent from './pages/auction/socket';
 
 
 function App() {
@@ -94,6 +95,7 @@ function App() {
           {/* <Route path="search" element={<SearchProducts />} /> */}
         </Route>
         <Route path="/unauth-page" element={<UnauthPage />} />
+        <Route path="/auction" element={<AuctionComponent />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </div>

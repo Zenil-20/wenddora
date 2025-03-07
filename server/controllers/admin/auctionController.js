@@ -28,8 +28,14 @@ exports.getAllAuctions = async (req, reply) => {
 };
 
 // Get Single Auction
-exports.getAuction = async (req, reply) => {
-  const auction = await Auction.findById(req.params.id);
-  if (!auction) return reply.status(404).send({ error: "Auction not found" });
-  reply.send(auction);
+exports.getAuction = async (req, res) => {
+  try {
+    const userId = req.user.id;
+    console.log(userId);
+    const auction = await Auction.findById(req.params.id);
+    if (!auction) return res.status(404).json({ status: "error", message: "Auction not found" });
+    return res.status(200).json({ status: "success", auction: auction, userId: userId });
+  } catch (error) {
+    return res.status(500).json({ status: "error", message: error.message });
+  }
 };

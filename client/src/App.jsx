@@ -26,7 +26,8 @@ import PaypalReturnPage from "./pages/shopping-view/paypal-return";
 import PaymentSuccessPage from "./pages/shopping-view/payment-success";
 import SellerSignup from "./pages/auth/SellerSignUp";
 import SellerLogin from "./pages/auth/sellerLogin";
-import Home from "./pages/Home"; // New Home page (you'll need to create this file)import KYCSubmit from "./pages/kyc/KYCSubmit";
+import Home from "./pages/Home"; // New Home page (you'll need to create this file)
+import KYCSubmit from "./pages/kyc/KYCSubmit";
 import KYCStatus from "./pages/kyc/KYCStatus";
 import AdminKYCReview from "./pages/kyc/AdminKYCReview";
 

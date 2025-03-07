@@ -113,4 +113,28 @@ const authMiddleware = async (req, res, next) => {
   }
 };
 
-module.exports = { registerUser, loginUser, logoutUser, authMiddleware };
+// 🔹 Middleware: Authenticate User
+const authenticateUser = (req, res, next) => {
+  const token = req.cookies.token;
+  if (!token) return res.status(401).json({ success: false, message: "Unauthorized user!" });
+
+  try {
+    const decoded = jwt.verify(token, JWT_SECRET);
+    req.user = decoded;
+    return next();
+  } catch (error) {
+    return res.status(401).json({ success: false, message: "Invalid token!" });
+  }
+};
+
+// 🔹 Middleware: Check if User is Admin
+const isAdmin = (req, res, next) => {
+  if (!req.user || req.user.role !== "admin") {
+    return res.status(403).json({ success: false, message: "Access denied!" });
+  }
+  next();
+};
+
+
+
+module.exports = { registerUser, loginUser, logoutUser, authMiddleware ,authenticateUser, isAdmin  };

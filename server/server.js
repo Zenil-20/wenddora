@@ -11,6 +11,7 @@ const shopAddressRouter = require("./routes/shop/address-routes");
 const shopOrderRouter = require("./routes/shop/order-routes");
 const adminOrderRouter = require("./routes/admin/order-routes");
 const storeRoutes = require("./routes/admin/admin-route");
+const kycRoutes = require("./routes/admin/kycRoutes");
 
 mongoose
   .connect("mongodb+srv://bashem208:bashem2024@cluster0.8o8bm.mongodb.net/")
@@ -51,5 +52,7 @@ app.use("/api/common/feature", commonFeatureRouter);
 app.use("/api/shop/address", shopAddressRouter);
 app.use("/api/shop/order", shopOrderRouter);  
 app.use("/api/admin-store", storeRoutes);
+app.use("/api/kyc", kycRoutes);
+
 
 app.listen(PORT, () => console.log(`Server is now running on port ${PORT}`));

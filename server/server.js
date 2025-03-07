@@ -53,6 +53,7 @@ app.use("/api/shop/address", shopAddressRouter);
 app.use("/api/shop/order", shopOrderRouter);
 app.use("/api/admin-store", storeRoutes);
 app.use("/api/auction", auctionRouter);
+app.use("/api/kyc", require("./routes/admin/kycRoutes"));
 
 // Store active auctions
 const activeAuctions = {};

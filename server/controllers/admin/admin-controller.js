@@ -59,4 +59,43 @@ const getStoreByOwner = async (req, res) => {
   }
 };
 
-module.exports = { addStore, getAllStores, getStoreByOwner };
+// Update Store Details
+const updateStore = async (req, res) => {
+  try {
+    const { storeId } = req.params;
+    const { storeName, storeAddress, ownerName, aadharLink, storeGstNumber } = req.body;
+
+    // if (!mongoose.Types.ObjectId.isValid(storeId)) {
+    //   return res.status(400).json({ message: "Invalid store ID format" });
+    // }
+
+    // Find the store by ID
+    const store = await Store.findById(storeId);
+    if (!store) {
+      return res.status(404).json({ message: "Store not found" });
+    }
+
+    // ❌ Removed authentication check for testing
+    // if (store.ownerName !== userName) {
+    //   return res.status(403).json({ message: "Unauthorized to edit this store" });
+    // }
+
+    // Update store details
+    if (storeName) store.storeName = storeName;
+    if (storeAddress) store.storeAddress = storeAddress;
+    if (ownerName) store.ownerName = ownerName;
+    if (aadharLink) store.aadharLink = aadharLink;
+    if (storeGstNumber) store.storeGstNumber = storeGstNumber;
+
+    // Save the updated store
+    const updatedStore = await store.save();
+    res.json({ message: "Store updated successfully", store: updatedStore });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ message: "Server error" });
+  }
+};
+
+
+// Export all functions, including updateStore
+module.exports = { addStore, getAllStores, getStoreByOwner, updateStore };

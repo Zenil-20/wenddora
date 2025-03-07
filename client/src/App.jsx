@@ -24,6 +24,7 @@ import { checkAuth } from './store/auth-slice';
 import { Skeleton } from './components/ui/skeleton';
 import PaypalReturnPage from "./pages/shopping-view/paypal-return";
 import PaymentSuccessPage from "./pages/shopping-view/payment-success";
+import AuctionComponent from './pages/auction/socket';
 import KYCSubmit from "./pages/kyc/KYCSubmit";
 import KYCStatus from "./pages/kyc/KYCStatus";
 import AdminKYCReview from "./pages/kyc/AdminKYCReview";
@@ -69,6 +70,7 @@ function App() {
         <Route path="/kyc-submit" element={<KYCSubmit />} />
         <Route path="/kyc-status" element={<KYCStatus />} />
         <Route path="/unauth-page" element={<UnauthPage />} />
+        <Route path="/auction" element={<AuctionComponent />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </div>
